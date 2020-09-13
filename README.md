@@ -1,7 +1,7 @@
 # 寵物地圖
 
-![url('/src/assets/image/pet_info.png)]
-![url('/src/assets/image/pet_info2.png)]
+![image](https://github.com/chihyux/apoption_map/blob/master/src/assets/image/pet_info.png)  
+![image](https://github.com/chihyux/apoption_map/blob/master/src/assets/image/pet_info2.png)  
 
 - 串接政府 OPEN DATA
 - index 載入開放認養寵物

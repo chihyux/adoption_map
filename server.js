@@ -27,16 +27,10 @@ router.get('/', async (ctx) => {
   ctx.body = data
 })
 
-router.get('/category/:category', async (ctx, next) => {
+router.get('/search/:param', async (ctx, next) => {
   console.log(ctx.params)
   console.log(ctx.url)
-  return await baseInstance(ctx.params.category, ctx, next)
-})
-
-router.get('/city/:city', async (ctx, next) => {
-  console.log(ctx.params)
-  console.log(ctx.url)
-  return await baseInstance(ctx.params.city, ctx, next)
+  return await baseInstance(ctx.params.param, ctx, next)
 })
 
 app.use(router.routes())

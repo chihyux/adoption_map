@@ -3,13 +3,16 @@ import { useFetch } from '../hooks/useFetch'
 import { cityNo } from '../apiHelper'
 import SelectBox from './selectBox'
 import AnimalBox from './animalBox'
+import Loading from '../components/loading'
+import LoadingIcon from '../assets/image/loading_icon.svg'
+import { LoadingWrapper } from '../components/style/loading'
 
 const IndexPage = () => {
   const [category, setCategory] = useState('')
   const [area, setArea] = useState('')
   const [route, setRoute] = useState(null)
   const [params, setParams] = useState(null)
-  const { searchData } = useFetch({
+  const { searchData, isFetching, isFetchingError } = useFetch({
     route: route,
     params: params,
   })
@@ -30,7 +33,6 @@ const IndexPage = () => {
   }
 
   const handleSubmit = (e) => {
-    console.log('click')
     e.preventDefault()
     setRoute('search')
     setParams(category || area)
@@ -42,7 +44,7 @@ const IndexPage = () => {
 
   return (
     <>
-      <h1>index page</h1>
+      <h1>認養寵物</h1>
       <SelectBox
         category={category}
         area={area}
@@ -52,7 +54,13 @@ const IndexPage = () => {
         handleCategoryChange={handleCategoryChange}
         handleSubmit={handleSubmit}
       />
-      <AnimalBox searchData={searchData} />
+      {isFetching ? (
+        <LoadingWrapper>
+          <Loading icon={LoadingIcon} />
+        </LoadingWrapper>
+      ) : (
+        <AnimalBox searchData={searchData} />
+      )}
     </>
   )
 }

@@ -1,10 +1,13 @@
 body {
   margin: 0;
-  font-family: 'jf-openhuninn', -apple-system, BlinkMacSystemFont, 'Arial',sans-serif;
+  font-family: 'jf-openhuninn','Arial',sans-serif;
 }
 
+:focus {
+    outline: 0px;
+}
 
 @font-face {
   font-family: 'jf-openhuninn';
-  src: url(./assets/font/jf-openhuninn-1.1.ttf) format('jf-openhuninn');
+  src: url(./assets/font/jf-openhuninn-1.1.ttf);
 }

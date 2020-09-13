@@ -1,19 +1,22 @@
 import React from 'react'
 import { cityNo } from '../apiHelper'
+import {
+  SelectBoxWrapper,
+  AreaBoxWrapper,
+  RadioInput,
+  Button,
+  ButtonWrapper,
+} from './style/selecBox'
 
 const SelectBox = ({
-  category,
-  area,
-  route,
-  params,
   handleAreaChange,
   handleCategoryChange,
   handleSubmit,
 }) => {
   return (
-    <form>
-      <div>
-        <h3>種類</h3>
+    <SelectBoxWrapper>
+      <RadioInput>
+        <h2>種類</h2>
         <input
           key="cat"
           type="radio"
@@ -22,7 +25,9 @@ const SelectBox = ({
           value="貓"
           onChange={(e) => handleCategoryChange(e)}
         />
-        <label htmlFor="cat">貓</label>
+        <label htmlFor="cat">
+          <span className="radio-button"></span>貓
+        </label>
         <input
           key="dog"
           type="radio"
@@ -31,14 +36,15 @@ const SelectBox = ({
           value="狗"
           onChange={(e) => handleCategoryChange(e)}
         />
-        <label htmlFor="dog">狗</label>
-      </div>
-      <div>
-        <h3>地區</h3>
-
+        <label htmlFor="dog">
+          <span className="radio-button"></span>狗
+        </label>
+      </RadioInput>
+      <AreaBoxWrapper>
+        <h2>地區</h2>
         {Object.values(cityNo).map((city, i) => {
           return (
-            <>
+            <RadioInput>
               <input
                 type="radio"
                 key={i}
@@ -47,13 +53,18 @@ const SelectBox = ({
                 value={city}
                 onChange={handleAreaChange}
               />
-              <label htmlFor={city}>{city}</label>
-            </>
+              <label htmlFor={city}>
+                <span className="radio-button"></span>
+                {city}
+              </label>
+            </RadioInput>
           )
         })}
-      </div>
-      <button onClick={(e) => handleSubmit(e)}>Submit</button>
-    </form>
+      </AreaBoxWrapper>
+      <ButtonWrapper>
+        <Button onClick={(e) => handleSubmit(e)}>Submit</Button>
+      </ButtonWrapper>
+    </SelectBoxWrapper>
   )
 }
 

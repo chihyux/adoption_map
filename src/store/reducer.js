@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux'
 import axios from 'axios'
+import { urlToRequest } from '../api/api'
 
 let initialState = {
   searchData: [],
@@ -33,20 +34,19 @@ const rootReducer = combineReducers({
 })
 
 //actions
-const serverUrl = 'http://localhost:3001'
 export const fetchData = (route, params) => {
   return async (dispatch) => {
     dispatch({ type: IS_FETCHING, payload: true })
     try {
       if (route && params) {
         console.log('redux has route')
-        const newUrl = `${serverUrl}/${route}/${params}`
+        const newUrl = `${urlToRequest}/${route}/${params}`
         const result = await axios.get(newUrl)
         dispatch({ type: GET_DATA, payload: result.data })
         dispatch({ type: IS_FETCHING, payload: false })
       } else {
         console.log('redux no route')
-        const result = await axios.get(serverUrl)
+        const result = await axios.get(urlToRequest)
         dispatch({ type: GET_DATA, payload: result.data })
         dispatch({ type: IS_FETCHING, payload: false })
       }

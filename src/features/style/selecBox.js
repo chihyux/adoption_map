@@ -52,7 +52,7 @@ export const AreaBoxWrapper = styled.div`
 export const ButtonWrapper = styled.div`
   width: 100%;
   text-align: center;
-  margin: 10px 0;
+  margin: 30px 0 20px;
 `
 export const Button = styled.button`
   font-size: 1.5rem;

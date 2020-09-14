@@ -16,6 +16,9 @@ export const ImgWrapper = styled.div`
     width: calc(100% / 3 - 15px);
   }
   @media (min-width: 768px) {
+    width: calc(100% / 4 - 20px);
+  }
+  @media (min-width: 1024px) {
     width: calc(100% / 5 - 25px);
   }
   .lazyload-wrapper {

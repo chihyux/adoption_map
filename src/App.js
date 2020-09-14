@@ -7,11 +7,7 @@ import { BodyWrapper } from './features/style/app'
 const App = () => {
   return (
     <>
-      <Navbar>
-        <a href="/">認養寵物</a>
-        <a href="/">各地數量</a>
-        <a href="/">寵物遺失啟示</a>
-      </Navbar>
+      <Navbar />
       <BodyWrapper>
         <IndexPage />
       </BodyWrapper>

@@ -14,43 +14,46 @@ const AnimalBox = ({ searchData }) => {
   }
 
   return (
-    <AnimalWrapper>
-      {searchData.length > 0 &&
-        Object.values(searchData)
-          .slice(0, 100)
-          .map((item) => {
-            return (
-              <ImgWrapper key={item.animal_id}>
-                <LazyLoad
-                  height={150}
-                  offset={[-200, 0]}
-                  placeholder={<Loading icon={BoxLoading} />}
-                  debounce={500}
-                >
-                  <img
-                    alt={item.animal_kind}
-                    src={
-                      item.album_file === ''
-                        ? item.animal_kind === '貓'
-                          ? CatDefaltImg
-                          : DogDefaltImg
-                        : item.album_file
-                    }
-                  />
-                </LazyLoad>
-                <InfoWrapper>
-                  <span>種類：{item.animal_kind}</span>
-                  <span>顏色：{item.animal_colour}</span>
-                  <span>體型：{item.animal_bodytype}</span>
-                  <span>性別：{item.animal_sex}</span>
-                  <span>
-                    地區：{transferCity(item.animal_area_pkid.toString())}
-                  </span>
-                </InfoWrapper>
-              </ImgWrapper>
-            )
-          })}
-    </AnimalWrapper>
+    <>
+      <div>目前數量：{searchData.length}</div>
+      <AnimalWrapper>
+        {searchData.length > 0 &&
+          Object.values(searchData)
+            .slice(0, 100)
+            .map((item) => {
+              return (
+                <ImgWrapper key={item.animal_id}>
+                  <LazyLoad
+                    height={150}
+                    offset={[-200, 0]}
+                    placeholder={<Loading icon={BoxLoading} />}
+                    debounce={500}
+                  >
+                    <img
+                      alt={item.animal_kind}
+                      src={
+                        item.album_file === ''
+                          ? item.animal_kind === '貓'
+                            ? CatDefaltImg
+                            : DogDefaltImg
+                          : item.album_file
+                      }
+                    />
+                  </LazyLoad>
+                  <InfoWrapper>
+                    <span>種類：{item.animal_kind}</span>
+                    <span>顏色：{item.animal_colour}</span>
+                    <span>體型：{item.animal_bodytype}</span>
+                    <span>性別：{item.animal_sex}</span>
+                    <span>
+                      地區：{transferCity(item.animal_area_pkid.toString())}
+                    </span>
+                  </InfoWrapper>
+                </ImgWrapper>
+              )
+            })}
+      </AnimalWrapper>
+    </>
   )
 }
 

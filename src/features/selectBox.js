@@ -7,6 +7,7 @@ import {
   Button,
   ButtonWrapper,
 } from './style/selecBox'
+import Input from '../components/input'
 
 const SelectBox = ({
   handleAreaChange,
@@ -17,46 +18,38 @@ const SelectBox = ({
     <SelectBoxWrapper>
       <RadioInput>
         <h2>種類</h2>
-        <input
+        <Input
           key="cat"
-          type="radio"
           id="cat"
           name="category"
           value="貓"
-          onChange={(e) => handleCategoryChange(e)}
+          handleChange={handleCategoryChange}
+          htmlfor="cat"
+          text="貓"
         />
-        <label htmlFor="cat">
-          <span className="radio-button"></span>貓
-        </label>
-        <input
+        <Input
           key="dog"
-          type="radio"
           id="dog"
           name="category"
           value="狗"
-          onChange={(e) => handleCategoryChange(e)}
+          handleChange={handleCategoryChange}
+          htmlfor="dog"
+          text="狗"
         />
-        <label htmlFor="dog">
-          <span className="radio-button"></span>狗
-        </label>
       </RadioInput>
       <AreaBoxWrapper>
         <h2>地區</h2>
         {Object.values(cityNo).map((city, i) => {
           return (
-            <RadioInput>
-              <input
-                type="radio"
-                key={i}
+            <RadioInput key={i}>
+              <Input
                 id={city}
                 name="city"
                 value={city}
-                onChange={handleAreaChange}
+                handleChange={handleAreaChange}
+                htmlfor={city}
+                text={city}
               />
-              <label htmlFor={city}>
-                <span className="radio-button"></span>
-                {city}
-              </label>
             </RadioInput>
           )
         })}

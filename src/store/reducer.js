@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux'
 import axios from 'axios'
 import { urlToRequest } from '../api/api'
+import sizeDetectionReducer from './sizeDetectionReducer'
 
 let initialState = {
   searchData: [],
@@ -31,6 +32,7 @@ const dataReducer = (state = initialState, action) => {
 
 const rootReducer = combineReducers({
   dataStatus: dataReducer,
+  device: sizeDetectionReducer,
 })
 
 //actions

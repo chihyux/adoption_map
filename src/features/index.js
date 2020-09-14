@@ -6,6 +6,7 @@ import AnimalBox from './animalBox'
 import Loading from '../components/loading'
 import LoadingIcon from '../assets/image/loading_icon.svg'
 import { LoadingWrapper } from '../components/style/loading'
+import ErrorBox from '../components/error'
 
 const IndexPage = () => {
   const [category, setCategory] = useState('')
@@ -58,6 +59,8 @@ const IndexPage = () => {
         <LoadingWrapper>
           <Loading icon={LoadingIcon} />
         </LoadingWrapper>
+      ) : isFetchingError ? (
+        <ErrorBox />
       ) : (
         <AnimalBox searchData={searchData} />
       )}

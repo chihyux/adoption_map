@@ -7,7 +7,8 @@ export const NavBarWrapper = styled.div`
   align-items: center;
   padding: 0 1em;
   justify-content: flex-end;
-  a {
+  a,
+  span {
     text-decoration: none;
     color: #ffffff;
     font-size: 1.5em;

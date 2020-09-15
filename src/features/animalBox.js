@@ -15,11 +15,10 @@ const AnimalBox = ({ searchData }) => {
 
   return (
     <>
-      <div>目前數量：{searchData.length}</div>
       <AnimalWrapper>
         {searchData.length > 0 &&
           Object.values(searchData)
-            .slice(0, 100)
+            // .slice(0, 100)
             .map((item) => {
               return (
                 <ImgWrapper key={item.animal_id}>

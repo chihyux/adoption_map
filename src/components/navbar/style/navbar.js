@@ -1,13 +1,13 @@
 import styled from 'styled-components'
 
 export const NavBarWrapper = styled.div`
-  background-color: #f7b900;
+  background-color: ${(props) => (props.small ? '#fff' : '#f7b900')};
   height: 80px;
   display: flex;
   align-items: center;
   padding: 0 1em;
   justify-content: flex-end;
-  a,
+  // a,
   span {
     text-decoration: none;
     color: #ffffff;

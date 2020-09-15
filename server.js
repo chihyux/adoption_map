@@ -23,7 +23,7 @@ async function baseInstance(params, ctx, next) {
 }
 
 router.get('/', async (ctx) => {
-  const { data } = await axios.get(apiurl)
+  const { data } = await axios.get(apiurl + '&$top=1000&$skip=0')
   ctx.body = data
 })
 

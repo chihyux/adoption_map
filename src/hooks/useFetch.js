@@ -8,7 +8,7 @@ export const useFetch = ({ route, params }) => {
   const { searchData, isFetching, isFetchingError } = useSelector((state) => ({
     searchData: state.dataStatus.searchData,
     isFetching: state.dataStatus.isFetching,
-    isError: state.dataStatus.isFetchingError,
+    isFetchingError: state.dataStatus.isFetchingError,
   }))
 
   useEffect(() => {

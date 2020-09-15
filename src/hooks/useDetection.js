@@ -7,8 +7,6 @@ export const useDetection = (width = 768) => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log('is resize')
-    console.log(window.innerWidth)
     const handleResize = () => {
       if (window.innerWidth < width) {
         dispatch(detectSize(true))

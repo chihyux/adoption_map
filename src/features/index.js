@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useFetch } from '../hooks/useFetch'
+import { useScroll } from '../hooks/useScroll'
 import { cityNo } from '../apiHelper'
 import SelectBox from './selectBox'
 import AnimalBox from './animalBox'
@@ -9,14 +10,15 @@ import { LoadingWrapper } from '../components/style/loading'
 import ErrorBox from '../components/error'
 
 const IndexPage = () => {
-  const [category, setCategory] = useState('')
-  const [area, setArea] = useState('')
+  const [category, setCategory] = useState(null)
+  const [area, setArea] = useState(null)
   const [route, setRoute] = useState(null)
   const [params, setParams] = useState(null)
   const { searchData, isFetching, isFetchingError } = useFetch({
     route: route,
     params: params,
   })
+  const { clientHeight, top, skip } = useScroll()
 
   const handleCategoryChange = (e) => {
     let toUtf8 = encodeURI(e.target.value)

@@ -15,7 +15,7 @@ export const ImgWrapper = styled.div`
   @media (min-width: 580px) {
     width: calc(100% / 3 - 15px);
   }
-  @media (min-width: 768px) {
+  @media (min-width: 1440px) {
     width: calc(100% / 4 - 20px);
   }
   @media (min-width: 1024px) {

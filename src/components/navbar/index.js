@@ -7,7 +7,11 @@ import { MobileBtn } from './style/menu'
 const Navbar = () => {
   const [toggle, setToggle] = useState(true)
   const { isSmallSize } = useDetection()
-
+  if (isSmallSize && !toggle) {
+    document.body.classList.add('no-scroll')
+  } else {
+    document.body.classList.remove('no-scroll')
+  }
   return (
     <NavBarWrapper small={isSmallSize}>
       <Menu toggle={toggle} isSmallSize={isSmallSize}>
@@ -18,9 +22,6 @@ const Navbar = () => {
       {isSmallSize && (
         <MobileBtn
           onClick={() => {
-            if (isSmallSize) {
-              document.body.classList.add('no-scroll')
-            }
             setToggle(!toggle)
           }}
         >

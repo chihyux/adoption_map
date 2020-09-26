@@ -11,7 +11,6 @@ const baseURL =
 
 async function baseInstance(params, ctx, next) {
   console.log('params', params)
-  console.log(baseURL + params)
   try {
     const { data } = await axios.get(baseURL + `&${encodeURI(params)}`)
     ctx.body = data
@@ -22,9 +21,8 @@ async function baseInstance(params, ctx, next) {
   }
 }
 
-router.get('/', async (ctx, next) => {
-  const { data } = await axios.get(baseURL + '&$top=50&$skip=0')
-  ctx.body = data
+router.get('/:param', async (ctx, next) => {
+  return await baseInstance(ctx.params.param, ctx, next)
 })
 
 router.get('/search/:param', async (ctx, next) => {

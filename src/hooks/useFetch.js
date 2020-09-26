@@ -1,9 +1,8 @@
 import { useEffect } from 'react'
-// import axios from 'axios'
 import { fetchData } from '../store/reducer'
 import { useSelector, useDispatch } from 'react-redux'
 
-export const useFetch = ({ route, params }) => {
+export const useFetch = ({ route, params, top, skip }) => {
   const dispatch = useDispatch()
   const { searchData, isFetching, isFetchingError } = useSelector((state) => ({
     searchData: state.dataStatus.searchData,
@@ -13,10 +12,11 @@ export const useFetch = ({ route, params }) => {
 
   useEffect(() => {
     const fetching = async () => {
-      dispatch(fetchData(route, params))
+      dispatch(fetchData(route, params, top, skip))
     }
     fetching()
-  }, [dispatch, route, params])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, params, route])
 
   return { searchData, isFetching, isFetchingError }
 }

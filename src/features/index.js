@@ -14,11 +14,13 @@ const IndexPage = () => {
   const [area, setArea] = useState(null)
   const [route, setRoute] = useState(null)
   const [params, setParams] = useState(null)
+  const { top, skip } = useScroll()
   const { searchData, isFetching, isFetchingError } = useFetch({
     route: route,
     params: params,
+    top: top,
+    skip: skip,
   })
-  const { clientHeight, top, skip } = useScroll()
 
   const handleCategoryChange = (e) => {
     let toUtf8 = encodeURI(e.target.value)

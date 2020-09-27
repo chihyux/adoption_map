@@ -1,8 +1,13 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { ErrorWrapper } from './style/error'
 
 const ErrorBox = () => {
-  return <ErrorWrapper>Something's error!</ErrorWrapper>
+  const { errMessage } = useSelector((state) => ({
+    errMessage: state.dataStatus.isFetchingError,
+  }))
+
+  return <ErrorWrapper>{errMessage}</ErrorWrapper>
 }
 
 export default ErrorBox

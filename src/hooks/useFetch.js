@@ -4,11 +4,14 @@ import { useSelector, useDispatch } from 'react-redux'
 
 export const useFetch = ({ route, params, top, skip }) => {
   const dispatch = useDispatch()
-  const { searchData, isFetching, isFetchingError } = useSelector((state) => ({
-    searchData: state.dataStatus.searchData,
-    isFetching: state.dataStatus.isFetching,
-    isFetchingError: state.dataStatus.isFetchingError,
-  }))
+  const { petData, searchData, isFetching, isFetchingError } = useSelector(
+    (state) => ({
+      petData: state.dataStatus.petData,
+      searchData: state.dataStatus.searchData,
+      isFetching: state.dataStatus.isFetching,
+      isFetchingError: state.dataStatus.isFetchingError,
+    })
+  )
 
   useEffect(() => {
     const fetching = async () => {
@@ -16,7 +19,7 @@ export const useFetch = ({ route, params, top, skip }) => {
     }
     fetching()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, params, route])
+  }, [dispatch, params, route, skip])
 
-  return { searchData, isFetching, isFetchingError }
+  return { petData, isFetching, isFetchingError, searchData }
 }

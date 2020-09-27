@@ -7,17 +7,19 @@ import { cityNo } from '../apiHelper'
 import BoxLoading from '../assets/image/Pulse.svg'
 import Loading from '../components/loading'
 
-const AnimalBox = ({ searchData }) => {
+const AnimalBox = (props) => {
   const transferCity = (item) => {
     let city = Object.keys(cityNo).indexOf(item)
     return Object.values(cityNo)[city]
   }
 
+  let animalData = props.petData || props.searchData
+
   return (
     <>
       <AnimalWrapper>
-        {searchData.length > 0 &&
-          Object.values(searchData).map((pet) => {
+        {animalData.length > 0 &&
+          Object.values(animalData).map((pet) => {
             return (
               <ImgWrapper key={pet.animal_id}>
                 <LazyLoad
@@ -42,9 +44,9 @@ const AnimalBox = ({ searchData }) => {
                   <span>顏色：{pet.animal_colour}</span>
                   <span>體型：{pet.animal_bodytype}</span>
                   <span>性別：{pet.animal_sex}</span>
-                  {/* <span>
+                  <span>
                     地區：{transferCity(pet.animal_area_pkid.toString())}
-                  </span> */}
+                  </span>
                 </InfoWrapper>
               </ImgWrapper>
             )

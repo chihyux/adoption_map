@@ -1,16 +1,18 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addData } from '../store/reducer'
+import { dataMemo } from '../store/reducer'
 import { detectHeight } from '../store/sizeDetectionReducer'
 
 export const useScroll = () => {
   const [deviceHeight, setDeviceHeight] = useState(0)
   const [dataCount, setDataCount] = useState(0)
-  const [top, setTop] = useState(15)
-  const [skip, setSkip] = useState(0)
-  const { searchData, bodyHeight } = useSelector((state) => ({
-    searchData: state.dataStatus.searchData,
+  // const [top, setTop] = useState(10)
+  // const [skip, setSkip] = useState(0)
+  const { petData, bodyHeight, skip, top } = useSelector((state) => ({
+    petData: state.dataStatus.petData,
     bodyHeight: state.device.bodyHeight,
+    skip: state.dataStatus.skip,
+    top: state.dataStatus.top,
   }))
 
   const dispatch = useDispatch()
@@ -19,16 +21,16 @@ export const useScroll = () => {
     console.log('is scroll')
     if (deviceHeight + window.pageYOffset === bodyHeight) {
       console.log('is bottom')
-      setSkip((prevSkip) => prevSkip + 15)
+      dispatch(dataMemo(10))
     }
-  }, [deviceHeight, bodyHeight])
+  }, [deviceHeight, bodyHeight, dispatch])
 
   const detectBodyHeight = useCallback(() => {
-    if (searchData.length !== dataCount) {
-      setDataCount(searchData.length)
+    if (petData.length !== dataCount) {
+      setDataCount(petData.length)
     }
     dispatch(detectHeight(document.body.scrollHeight))
-  }, [searchData.length, dataCount, dispatch])
+  }, [dataCount, dispatch, petData.length])
 
   useEffect(() => {
     setDeviceHeight(window.innerHeight)
@@ -39,11 +41,6 @@ export const useScroll = () => {
       window.removeEventListener('scroll', handleScroll, true)
     }
   }, [detectBodyHeight, dispatch, handleScroll, skip, top])
-
-  useEffect(() => {
-    if (skip === 0) return
-    dispatch(addData(top, skip))
-  }, [dispatch, skip, top])
 
   return { top, skip }
 }

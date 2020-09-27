@@ -4,15 +4,20 @@ import { urlToRequest } from '../api/api'
 import sizeDetectionReducer from './sizeDetectionReducer'
 
 let initialState = {
+  petData: [],
   searchData: [],
   isFetching: false,
   isFetchingError: false,
+  top: 10,
+  skip: 0,
 }
 
 const IS_FETCHING = 'IS_FETCHING'
 const IS_ERROR = 'IS_ERROR'
 const GET_DATA = 'GET_DATA'
-const ADD_DATA = 'ADD_DATA'
+const SEARCH_DATA = 'SEARCH_DATA'
+const DATA_MEMO = 'DATA_MEMO'
+const RESET_DATA_MEMO = 'RESET_DATA_MEMO'
 
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,17 +25,25 @@ const dataReducer = (state = initialState, action) => {
       return { ...state, isFetching: action.payload }
     }
     case GET_DATA: {
-      return { ...state, searchData: action.payload }
+      return { ...state, petData: [...state.petData, ...action.payload] }
     }
     case IS_ERROR: {
       return { ...state, isFetchingError: action.payload }
     }
-    case ADD_DATA: {
-      let more = state.searchData.concat(action.payload)
+    case SEARCH_DATA: {
       return {
         ...state,
-        searchData: [...state.searchData, ...action.payload],
+        petData: [],
+        skip: 0,
+        searchData: [...state.petData, ...action.payload],
       }
+    }
+    case DATA_MEMO: {
+      let count = state.skip + action.payload
+      return { ...state, skip: count }
+    }
+    case RESET_DATA_MEMO: {
+      return { ...state, skip: 0 }
     }
     default: {
       return state
@@ -49,9 +62,9 @@ export const fetchData = (route, params, top, skip) => {
     dispatch({ type: IS_FETCHING, payload: true })
     try {
       if (route && params) {
-        const newUrl = `${urlToRequest}/${route}/${params}`
+        const newUrl = `${urlToRequest}/${route}/${params}&$top=${top}&$skip=${skip}`
         const result = await axios.get(newUrl)
-        dispatch({ type: GET_DATA, payload: result.data })
+        dispatch({ type: SEARCH_DATA, payload: result.data })
         dispatch({ type: IS_FETCHING, payload: false })
       } else {
         const count = `$top=${top}&$skip=${skip}`
@@ -60,26 +73,17 @@ export const fetchData = (route, params, top, skip) => {
         dispatch({ type: GET_DATA, payload: result.data })
         dispatch({ type: IS_FETCHING, payload: false })
       }
-    } catch {
-      dispatch({ type: IS_ERROR, payload: true })
+    } catch (err) {
+      dispatch({ type: IS_ERROR, payload: err.message })
       dispatch({ type: IS_FETCHING, payload: false })
     }
   }
 }
 
-export const addData = (top, skip) => {
-  return async (dispatch) => {
-    dispatch({ type: IS_FETCHING, payload: true })
-    try {
-      const count = `$top=${top}&$skip=${skip}`
-      const url = `${urlToRequest}/${count}`
-      const result = await axios.get(url)
-      dispatch({ type: ADD_DATA, payload: result.data })
-      dispatch({ type: IS_FETCHING, payload: false })
-    } catch {
-      dispatch({ type: IS_ERROR, payload: true })
-      dispatch({ type: IS_FETCHING, payload: false })
-    }
+export const dataMemo = (num) => {
+  return {
+    type: DATA_MEMO,
+    payload: num,
   }
 }
 

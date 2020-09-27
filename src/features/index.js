@@ -15,7 +15,7 @@ const IndexPage = () => {
   const [route, setRoute] = useState(null)
   const [params, setParams] = useState(null)
   const { top, skip } = useScroll()
-  const { searchData, isFetching, isFetchingError } = useFetch({
+  const { searchData, petData, isFetching, isFetchingError } = useFetch({
     route: route,
     params: params,
     top: top,
@@ -59,15 +59,14 @@ const IndexPage = () => {
         handleCategoryChange={handleCategoryChange}
         handleSubmit={handleSubmit}
       />
-      {isFetching ? (
+      <AnimalBox petData={petData} />
+      <AnimalBox searchData={searchData} />
+      {isFetching && (
         <LoadingWrapper>
           <Loading icon={LoadingIcon} />
         </LoadingWrapper>
-      ) : isFetchingError ? (
-        <ErrorBox />
-      ) : (
-        <AnimalBox searchData={searchData} />
       )}
+      {isFetchingError && <ErrorBox />}
     </>
   )
 }

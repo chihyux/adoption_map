@@ -6,8 +6,6 @@ import { detectHeight } from '../store/sizeDetectionReducer'
 export const useScroll = () => {
   const [deviceHeight, setDeviceHeight] = useState(0)
   const [dataCount, setDataCount] = useState(0)
-  // const [top, setTop] = useState(10)
-  // const [skip, setSkip] = useState(0)
   const { petData, bodyHeight, skip, top } = useSelector((state) => ({
     petData: state.dataStatus.petData,
     bodyHeight: state.device.bodyHeight,
@@ -18,7 +16,6 @@ export const useScroll = () => {
   const dispatch = useDispatch()
 
   const handleScroll = useCallback(() => {
-    console.log('is scroll')
     if (deviceHeight + window.pageYOffset === bodyHeight) {
       console.log('is bottom')
       dispatch(dataMemo(10))

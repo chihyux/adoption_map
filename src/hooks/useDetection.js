@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { detectSize } from '../store/sizeDetectionReducer'
+import { detectSize, detectHeight } from '../store/sizeDetectionReducer'
 
 export const useDetection = (width = 768) => {
   const { isSmallSize } = useSelector((state) => state.device)
@@ -8,14 +8,15 @@ export const useDetection = (width = 768) => {
 
   useEffect(() => {
     const handleResize = () => {
+      dispatch(detectHeight(document.body.scrollHeight))
       if (window.innerWidth < width) {
         dispatch(detectSize(true))
       } else {
         dispatch(detectSize(false))
       }
     }
-    window.addEventListener('resize', handleResize)
     handleResize()
+    window.addEventListener('resize', handleResize)
 
     return () => {
       window.removeEventListener('resize', handleResize)

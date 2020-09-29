@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const MenuWrapper = styled.div`
+export const MenuWrapper = styled.nav`
   ${(props) => {
     if (props.small) {
       if (props.toggle) {
@@ -10,7 +10,7 @@ export const MenuWrapper = styled.div`
       } else {
         return `
         display:block;
-        position: absolute;
+        position: fixed;
         background-color: green;
         width: 100%;
         height: 100vh;
@@ -33,7 +33,7 @@ export const MenuInner = styled.div`
         position: relative;
         top: 50%;
         transform: translateY(-50%);
-    span {
+    a {
       padding: 1em 0;
     }
   `

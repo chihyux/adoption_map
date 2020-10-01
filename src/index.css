@@ -7,6 +7,12 @@ body {
     outline: 0px;
 }
 
+a:-webkit-any-link {
+    color: #333333;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .no-scroll {
   overflow: hidden;
 }

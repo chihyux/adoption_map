@@ -22,3 +22,8 @@ export const cityNo = {
   '22': '金門縣',
   '23': '連江縣',
 }
+
+export const transferCity = (item) => {
+  let city = Object.keys(cityNo).indexOf(item)
+  return Object.values(cityNo)[city]
+}

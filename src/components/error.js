@@ -7,7 +7,7 @@ const ErrorBox = () => {
     errMessage: state.dataStatus.isFetchingError,
   }))
 
-  return <ErrorWrapper>{errMessage}</ErrorWrapper>
+  return <ErrorWrapper>Oops! {errMessage}</ErrorWrapper>
 }
 
 export default ErrorBox

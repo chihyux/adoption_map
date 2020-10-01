@@ -12,7 +12,7 @@ const baseURL =
 async function baseInstance(params, ctx, next) {
   console.log('params', params)
   try {
-    const { data } = await axios.get(baseURL + `&${encodeURI(params)}`)
+    const { data } = await axios.get(baseURL + `${encodeURI(params)}`)
     ctx.body = data
     return (ctx.status = 200)
   } catch (err) {

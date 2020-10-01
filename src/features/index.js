@@ -1,15 +1,17 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom'
+import DetailBox from './adoptionDetail'
+import IndexPage from './adoptionInfo'
 
 const Body = () => {
   return (
     <>
       <Switch>
         <Route exact path="/">
-          <p>Index</p>
+          <IndexPage />
         </Route>
         <Route path="/detail/:id">
-          <p>index -id</p>
+          <DetailBox />
         </Route>
         <Route path="/needhelp">
           <p>need help</p>

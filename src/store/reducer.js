@@ -17,7 +17,7 @@ const IS_ERROR = 'IS_ERROR'
 const GET_DATA = 'GET_DATA'
 const SEARCH_DATA = 'SEARCH_DATA'
 const DATA_MEMO = 'DATA_MEMO'
-const RESET_DATA_MEMO = 'RESET_DATA_MEMO'
+const RESET_DATA = 'RESET_DATA'
 
 const dataReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -34,16 +34,15 @@ const dataReducer = (state = initialState, action) => {
       return {
         ...state,
         petData: [],
-        skip: 0,
-        searchData: [...state.petData, ...action.payload],
+        searchData: [...state.searchData, ...action.payload],
       }
     }
     case DATA_MEMO: {
       let count = state.skip + action.payload
       return { ...state, skip: count }
     }
-    case RESET_DATA_MEMO: {
-      return { ...state, skip: 0 }
+    case RESET_DATA: {
+      return { ...state, petData: [], searchData: [], skip: 0 }
     }
     default: {
       return state
@@ -62,7 +61,7 @@ export const fetchData = (route, params, top, skip) => {
     dispatch({ type: IS_FETCHING, payload: true })
     try {
       if (route && params) {
-        const newUrl = `${urlToRequest}/${route}/${params}&$top=${top}&$skip=${skip}`
+        const newUrl = `${urlToRequest}/${route}/$top=${top}&$skip=${skip}&${params}`
         const result = await axios.get(newUrl)
         dispatch({ type: SEARCH_DATA, payload: result.data })
         dispatch({ type: IS_FETCHING, payload: false })
@@ -84,6 +83,12 @@ export const dataMemo = (num) => {
   return {
     type: DATA_MEMO,
     payload: num,
+  }
+}
+
+export const reset = () => {
+  return {
+    type: RESET_DATA,
   }
 }
 

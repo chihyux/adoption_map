@@ -3,8 +3,8 @@ import { NavBarWrapper } from './style/navbar'
 import Menu from './menu'
 import { useDetection } from '../../hooks/useDetection'
 import { MobileBtn } from './style/menu'
-import { Link, NavLink } from 'react-router-dom'
-import menuData from '../../constant/menu.json'
+import { NavLink } from 'react-router-dom'
+import { routes } from '../../constant/routes'
 
 const Navbar = () => {
   const [toggle, setToggle] = useState(true)
@@ -19,9 +19,10 @@ const Navbar = () => {
   return (
     <NavBarWrapper small={isSmallSize}>
       <Menu toggle={toggle} isSmallSize={isSmallSize}>
-        {menuData.map((link) => {
+        {routes.map((link) => {
           return (
             <NavLink
+              onClick={() => setToggle(true)}
               to={link.route}
               exact
               className="navbar__link"
@@ -32,9 +33,6 @@ const Navbar = () => {
             </NavLink>
           )
         })}
-        {/* <Link to="/">認養寵物</Link>
-        <span>各地數量</span>
-        <span>寵物遺失啟示</span> */}
       </Menu>
       {isSmallSize && (
         <MobileBtn

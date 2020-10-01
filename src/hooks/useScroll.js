@@ -17,17 +17,16 @@ export const useScroll = () => {
 
   const handleScroll = useCallback(() => {
     if (deviceHeight + window.pageYOffset === bodyHeight) {
-      console.log('is bottom')
       dispatch(dataMemo(10))
     }
   }, [deviceHeight, bodyHeight, dispatch])
 
   const detectBodyHeight = useCallback(() => {
-    if (petData.length !== dataCount) {
+    if (petData && petData.length !== dataCount) {
       setDataCount(petData.length)
     }
     dispatch(detectHeight(document.body.scrollHeight))
-  }, [dataCount, dispatch, petData.length])
+  }, [dataCount, dispatch, petData])
 
   useEffect(() => {
     setDeviceHeight(window.innerHeight)

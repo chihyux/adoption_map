@@ -23,6 +23,7 @@ export const useFetch = ({ route, params, top, skip }) => {
       dispatch(fetchData(route, params, top, skip))
     }
 
+    // 回上一頁會fetch 2次 status = true導致
     if (status) {
       fetching()
     } else {

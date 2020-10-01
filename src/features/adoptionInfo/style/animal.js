@@ -3,23 +3,22 @@ import styled from 'styled-components'
 export const AnimalWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   margin-top: 30px;
 `
 export const ImgWrapper = styled.div`
-  width: calc(100% / 2 - 10px);
-  margin: 0px 5px 20px 5px;
+  width: calc(100% / 2 - 20px);
+  margin: 0px 10px 20px 10px;
   overflow: hidden;
   background-color: #f1f1f1;
   box-shadow: 2px 2px 7px 0px rgb(0 0 0 / 0.3);
   @media (min-width: 580px) {
-    width: calc(100% / 3 - 15px);
+    width: calc(100% / 3 - 20px);
   }
   @media (min-width: 1440px) {
     width: calc(100% / 4 - 20px);
   }
   @media (min-width: 1024px) {
-    width: calc(100% / 5 - 25px);
+    width: calc(100% / 5 - 20px);
   }
   .lazyload-wrapper {
     text-align: center;

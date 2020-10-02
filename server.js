@@ -2,6 +2,7 @@ const Koa = require('koa')
 const cors = require('@koa/cors')
 const axios = require('axios')
 const router = require('koa-router')()
+const https = require('https')
 
 const app = new Koa()
 app.use(cors())
@@ -13,11 +14,14 @@ async function baseInstance(params, ctx, next) {
   console.log('params', params)
   try {
     const { data } = await axios.get(baseURL + `${encodeURI(params)}`)
-    ctx.body = data
-    return (ctx.status = 200)
+    if (data) {
+      ctx.body = data
+      return (ctx.status = 200)
+    }
+    return (ctx.status = 404)
   } catch (err) {
-    const status = err.response ? err.response.status : 500
-    ctx.throw(status, err.message)
+    err.status = err.statusCode || err.status || 500
+    throw err
   }
 }
 
@@ -31,4 +35,9 @@ router.get('/search/:param', async (ctx, next) => {
 
 app.use(router.routes())
 const PORT = process.env.PORT || 3001
-app.listen(PORT)
+
+const server = https.creatServer(app.callback())
+
+server.listen(PORT, () => {
+  console.log(`env: ${process.env.PORT} listening ${PORT}`)
+})

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { dataMemo } from '../store/reducer'
+import { dataMemo } from '../store/dataReducer'
 import { detectHeight } from '../store/sizeDetectionReducer'
 
 export const useScroll = () => {
@@ -9,8 +9,8 @@ export const useScroll = () => {
   const { petData, bodyHeight, skip, top } = useSelector((state) => ({
     petData: state.dataStatus.petData,
     bodyHeight: state.device.bodyHeight,
-    skip: state.dataStatus.skip,
-    top: state.dataStatus.top,
+    skip: state.dataStatus.query.params.$skip,
+    top: state.dataStatus.query.params.$top,
   }))
 
   const dispatch = useDispatch()

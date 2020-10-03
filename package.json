@@ -2,6 +2,9 @@
   "name": "adoption_map",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "12.x"
+  },
   "dependencies": {
     "@koa/cors": "^3.1.0",
     "@reduxjs/toolkit": "^1.4.0",
@@ -10,8 +13,6 @@
     "@testing-library/user-event": "^7.1.2",
     "axios": "^0.20.0",
     "google-map-react": "^2.1.6",
-    "koa": "^2.13.0",
-    "koa-router": "^9.4.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-lazyload": "^3.0.0",

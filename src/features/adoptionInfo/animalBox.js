@@ -9,13 +9,11 @@ import Loading from '../../components/loading'
 import { Link } from 'react-router-dom'
 
 const AnimalBox = (props) => {
-  let animalData = props.petData || props.searchData
-
   return (
     <>
       <AnimalWrapper>
-        {animalData &&
-          Object.values(animalData).map((pet) => {
+        {props.petData &&
+          Object.values(props.petData).map((pet) => {
             return (
               <ImgWrapper key={pet.animal_id}>
                 <Link to={{ pathname: `/detail/${pet.animal_id}`, state: pet }}>

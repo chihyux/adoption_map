@@ -8,31 +8,41 @@ import Loading from '../../components/loading'
 import LoadingIcon from '../../assets/image/loading_icon.svg'
 import { LoadingWrapper } from '../../components/style/loading'
 import ErrorBox from '../../components/error'
-import { reset } from '../../store/reducer'
-import { useDispatch } from 'react-redux'
+import { reset, updateQuery } from '../../store/dataReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const IndexPage = () => {
+  const dispatch = useDispatch()
   const [category, setCategory] = useState(null)
   const [area, setArea] = useState(null)
-  const [route, setRoute] = useState(null)
-  const [params, setParams] = useState(null)
-  const { top, skip } = useScroll()
-  const { searchData, petData, isFetching, isFetchingError } = useFetch({
+  const [route, setRoute] = useState('/info')
+  const { query } = useSelector((state) => ({
+    query: state.dataStatus.query,
+  }))
+
+  const { skip } = useScroll()
+  const { petData, isFetching, isFetchingError } = useFetch(query, skip)
+  let newParams = {
     route: route,
-    params: params,
-    top: top,
-    skip: skip,
-  })
-  const dispatch = useDispatch()
+    params: {
+      UnitId: 'QcbUEzN6E6DL',
+      animal_status: 'OPEN',
+      $top: 10,
+      $skip: 0,
+      animal_kind: undefined || category,
+      animal_area_pkid: undefined || area,
+    },
+  }
 
   const handleCategoryChange = (e) => {
-    let toUtf8 = encodeURI(e.target.value)
-    setCategory(`animal_kind=${toUtf8}`)
+    setRoute('/search')
+    setCategory(e.target.value)
   }
 
   const handleAreaChange = (e) => {
     let num = transferAreaNo(e.target.value)
-    setArea(`animal_area_pkid=${num}`)
+    setRoute('/search')
+    setArea(num)
   }
 
   const transferAreaNo = (value) => {
@@ -43,12 +53,7 @@ const IndexPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     dispatch(reset())
-    setRoute('search')
-    setParams(category || area)
-    if (category && area) {
-      const searchVal = category.concat('&').concat(area)
-      setParams(searchVal)
-    }
+    dispatch(updateQuery(newParams))
   }
 
   return (
@@ -57,14 +62,11 @@ const IndexPage = () => {
       <SelectBox
         category={category}
         area={area}
-        route={route}
-        params={params}
         handleAreaChange={handleAreaChange}
         handleCategoryChange={handleCategoryChange}
         handleSubmit={handleSubmit}
       />
       <AnimalBox petData={petData} />
-      <AnimalBox searchData={searchData} />
       {isFetching && (
         <LoadingWrapper>
           <Loading icon={LoadingIcon} />

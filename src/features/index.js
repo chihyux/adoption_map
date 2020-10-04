@@ -2,7 +2,6 @@ import React from 'react'
 import { Route, Switch } from 'react-router-dom'
 import DetailBox from './adoptionDetail'
 import Resource from './resource'
-// import IndexPage from './adoptionInfo'
 
 const IndexPage = React.lazy(() => import('./adoptionInfo'))
 const ErrorPage = React.lazy(() => import('../components/pageError'))

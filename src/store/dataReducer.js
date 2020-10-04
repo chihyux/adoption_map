@@ -75,12 +75,10 @@ export const fetchData = ({ route, params }) => {
     dispatch({ type: IS_FETCHING, payload: true })
     try {
       if (route === '/resource') {
-        console.log('reeee')
         const { data } = await instance(route, { params })
         dispatch({ type: GET_RESOURCE_DATA, payload: data })
         dispatch({ type: IS_FETCHING, payload: false })
       } else {
-        console.log('norma')
         const { data } = await instance(route, { params })
         dispatch({ type: GET_DATA, payload: data })
         dispatch({ type: IS_FETCHING, payload: false })

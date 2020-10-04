@@ -43,7 +43,6 @@ const PopUpBox = ({ mapHandler, place }) => {
     const service = new maps.places.PlacesService(map)
     service.getDetails(place, (place, status) => {
       if (status === maps.places.PlacesServiceStatus.OK) {
-        console.log(place)
         setMarker(place)
         setPosition({
           lat: place.geometry.location.lat(),

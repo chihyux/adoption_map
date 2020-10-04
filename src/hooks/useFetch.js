@@ -15,7 +15,6 @@ export const useFetch = ({ route, params }, skip) => {
 
   useEffect(() => {
     const fetching = () => {
-      console.log('t')
       dispatch(fetchData({ route, params }))
     }
 

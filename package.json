@@ -2,10 +2,7 @@
   "name": "adoption_map",
   "version": "0.1.0",
   "private": true,
-  "engines": {
-    "node": "12.x"
-  },
-  "homepage": "https://jolly-shockley-e9aec7.netlify.app",
+  "homepage": "https://pets-map.herokuapp.com",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",

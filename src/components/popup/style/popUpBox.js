@@ -6,8 +6,8 @@ export const MapWrapper = styled.div`
 `
 
 export const PopWrapper = styled.div`
-  width: 35rem;
-  height: 35rem;
+  width: 80%;
+  height: 50%;
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
@@ -20,6 +20,10 @@ export const PopWrapper = styled.div`
     &:hover {
       cursor: pointer;
     }
+  }
+  @media (min-width: 768px) {
+    width: 35rem;
+    height: 35rem;
   }
 `
 export const MarkerWrapper = styled.div`

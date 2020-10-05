@@ -4,7 +4,7 @@ export const LoadingWrapper = styled.div`
   text-align: center;
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   background: rgb(0 0 0 / 0.6);
   left: 0;
   top: 0;

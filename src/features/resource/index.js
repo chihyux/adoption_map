@@ -35,7 +35,6 @@ const Resource = () => {
   // })
 
   const transferString = (value) => {
-    console.log(value)
     return Number(value.slice(0, -4))
   }
 

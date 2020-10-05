@@ -5,11 +5,14 @@ export const RadioInput = styled.div`
     opacity: 0;
   }
   label {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     cursor: pointer;
     position: relative;
     padding-left: 2rem;
     line-height: 1.8;
+    @media (min-width: 768px) {
+      font-size: 1.5rem;
+    }
   }
   .radio-button {
     height: 1rem;

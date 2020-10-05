@@ -36,16 +36,18 @@ const DetailBox = () => {
 
   return (
     <DetailWrapper key={detail.animal_id}>
-      <DetailImg
-        alt={detail.animal_kind}
-        src={
-          detail.album_file
-            ? detail.album_file
-            : detail.animal_kind === '貓'
-            ? CatDefaltImg
-            : DogDefaltImg
-        }
-      />
+      <DetailImg>
+        <img
+          alt={detail.animal_kind}
+          src={
+            detail.album_file
+              ? detail.album_file
+              : detail.animal_kind === '貓'
+              ? CatDefaltImg
+              : DogDefaltImg
+          }
+        />
+      </DetailImg>
       <DetailInfo>
         <span>入所天數：{waitingDays(detail.animal_createtime)}天</span>
         <span>入所日期：{detail.animal_createtime}</span>

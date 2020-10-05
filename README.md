@@ -4,33 +4,20 @@
 ![image](https://github.com/chihyux/apoption_map/blob/master/src/assets/image/pet_info2.png)
 
 - 串接政府 OPEN DATA
-- index 載入開放認養寵物
-- 搜尋寵物種類 / 地區
 - lazy load animation
+- 使用 react-lazyload 實做 lazyload animation
+- 使用 custom hooks 偵測 menu 適應螢幕尺寸、判斷捲軸位置加載資料及封裝 fetch data
+- 使用 React.lazy 和 React.Suspense 延遲加載 router
+- 手刻版型及自適應設計
+- 手刻 infinite scroll
+- 串接 Google map api 顯示收容所位置
+- recharts 製作圖表視覺化數據
 
 ## Installing
 
 1. clone this project
 2. run npm i
-3. npm run kao (development mode backend)
-4. num start
-
-## issue
-
-infinite scroll problem  
-the state changed but redux is firing the setState and the component redraws completely.  
-so I need to start scrolling again but its add new data. When I reach waypoint again everything happens again, component fully rerenders and I need to scroll from top through more data.
-
-![link](https://stackoverflow.com/questions/49462149/implementing-infinite-scroll-with-react-redux-and-react-waypoint-issue)solve:  
-once you make another api request, in your action creator you set isLoading to true. this tells react to remove the whole photos component and then once it's set to false again react will show the new photos.
-
-useEeffect not render at didmount
-
-```
- useEffect(() => {
-if (skip === 0) return
- dispatch(addData(top, skip))
- }, [dispatch, skip, top])
-```
+3. clone backend project => npm start
+4. npm start
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

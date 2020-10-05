@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import GoogleMapReact from 'google-map-react'
-// import { key } from '../../api/mapkeys'
+import { apiKey } from '../../api/mapkeys'
 import { MapWrapper } from './style/popUpBox'
 import Marker from './marker'
 
@@ -43,6 +43,7 @@ const PopUpBox = ({ mapHandler, place }) => {
     const service = new maps.places.PlacesService(map)
     service.getDetails(place, (place, status) => {
       if (status === maps.places.PlacesServiceStatus.OK) {
+        console.log(place)
         setMarker(place)
         setPosition({
           lat: place.geometry.location.lat(),
@@ -52,7 +53,10 @@ const PopUpBox = ({ mapHandler, place }) => {
     })
   }
 
-  const key = process.env.REACT_APP_GOOGLE_KEY
+  const key =
+    process.env.NODE_ENV === 'production'
+      ? process.env.REACT_APP_GOOGLE_KEY
+      : apiKey
 
   return (
     <MapWrapper>

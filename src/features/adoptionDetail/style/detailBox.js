@@ -11,6 +11,7 @@ export const DetailWrapper = styled.div`
 
 export const DetailImg = styled.img`
   width: 100%;
+  background: #c5c5c5;
   @media (min-width: 1024px) {
     width: 40%;
   }

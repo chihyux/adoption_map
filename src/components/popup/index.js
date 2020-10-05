@@ -52,7 +52,7 @@ const PopUpBox = ({ mapHandler, place }) => {
     })
   }
 
-  const key = process.env.GOOGLE_KEY
+  const key = process.env.REACT_APP_GOOGLE_KEY
   console.log(key)
   return (
     <MapWrapper>

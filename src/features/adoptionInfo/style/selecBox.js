@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-
+import { media } from '../../../globalStyle'
 export const RadioInput = styled.div`
   input[type='radio'] {
     opacity: 0;
@@ -10,9 +10,9 @@ export const RadioInput = styled.div`
     position: relative;
     padding-left: 2rem;
     line-height: 1.8;
-    @media (min-width: 768px) {
+    ${media.sm`
       font-size: 1.5rem;
-    }
+    `}
   }
   .radio-button {
     height: 1rem;

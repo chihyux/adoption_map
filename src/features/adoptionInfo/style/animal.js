@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { media } from '../../../globalStyle'
 
 export const AnimalWrapper = styled.section`
   display: flex;
@@ -11,15 +12,15 @@ export const ImgWrapper = styled.div`
   overflow: hidden;
   background-color: #f1f1f1;
   box-shadow: 2px 2px 7px 0px rgb(0 0 0 / 0.3);
-  @media (min-width: 580px) {
+  ${media.xs`
     width: calc(100% / 3 - 20px);
-  }
-  @media (min-width: 1440px) {
+  `}
+  ${media.md`
     width: calc(100% / 4 - 20px);
-  }
-  @media (min-width: 1024px) {
+  `}
+  ${media.lg`
     width: calc(100% / 5 - 20px);
-  }
+  `}
   .lazyload-wrapper {
     text-align: center;
   }

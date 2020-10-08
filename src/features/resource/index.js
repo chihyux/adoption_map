@@ -26,6 +26,7 @@ const Resource = () => {
     },
   }
   const { resourceData, isFetching, isFetchingError } = useFetch(resourceParams)
+
   // let value = resourceData.map((data, index) => {
   //   return {
   //     value: data.rpt_country,

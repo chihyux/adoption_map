@@ -23,13 +23,12 @@ const ErrorPage = () => {
               </div>
             </div>
             <span>
-              Design by Abolfzal Arab from
               <a
                 href="https://codepen.io/abol/pen/arPeZz?editors=0100"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                codepen
+                Design by Abolfzal Arab from codepen
               </a>
             </span>
           </div>

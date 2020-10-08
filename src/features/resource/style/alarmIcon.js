@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { media } from '../../../globalStyle'
 
 export const CityDataWrapper = styled.section`
   display: flex;
@@ -17,12 +18,12 @@ export const CityDataWrapper = styled.section`
     span {
       font-size: 1.25rem;
     }
-    @media (min-width: 768px) {
+    ${media.sm`
       width: calc(100% / 3 - 50px);
-    }
-    @media (min-width: 1024px) {
+    `}
+    ${media.md`
       width: calc(100% / 5 - 50px);
-    }
+    `}
   }
 `
 export const AlarmIcon = styled.span`

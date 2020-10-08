@@ -7,6 +7,7 @@ export const ErrorWrapper = styled.div`
 `
 
 export const NotFoundWrapper = styled.div`
+  @import url('https://fonts.googleapis.com/css?family=Arvo');
   .page_404 {
     padding: 40px 0;
     background: #fff;
@@ -21,6 +22,7 @@ export const NotFoundWrapper = styled.div`
     span,
     span > a {
       color: #bdbdbd;
+      text-decoration: underline;
     }
   }
   .four_zero_four_bg {
@@ -35,15 +37,15 @@ export const NotFoundWrapper = styled.div`
   .four_zero_four_bg h3 {
     font-size: 80px;
   }
-  .link_404 {
-    color: #fff !important;
-    padding: 10px 20px;
-    background: #39ac31;
-    margin: 20px 0;
-    display: inline-block;
-  }
   .contant_box_404 {
     margin-top: -50px;
     text-align: center;
+    .link_404 {
+      color: #fff;
+      padding: 10px 20px;
+      background: #39ac31;
+      margin: 20px 0;
+      display: inline-block;
+    }
   }
 `

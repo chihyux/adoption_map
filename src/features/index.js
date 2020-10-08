@@ -16,9 +16,6 @@ const Body = () => {
         <Route path="/detail/:id">
           <DetailBox />
         </Route>
-        {/* <Route path="/needhelp">
-          <p>need help</p>
-        </Route> */}
         {/* <Route path="/findpet">
           <p>find pet</p>
         </Route> */}

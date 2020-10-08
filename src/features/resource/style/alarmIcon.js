@@ -37,7 +37,6 @@ export const AlarmIcon = styled.span`
     transform: translateY(-50%);
     width: 10px;
     height: 10px;
-    ${(props) =>
-      props.num > 100 ? `background-color: red;` : `background-color: green;`}
+    background-color: ${(props) => (props.num > 100 ? `red` : `green`)};
   }
 `

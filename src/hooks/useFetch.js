@@ -23,7 +23,7 @@ export const useFetch = ({ route, params }, skip) => {
     fetching()
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch, route, skip])
+  }, [dispatch, route, params, skip])
 
   return { petData, resourceData, isFetching, isFetchingError }
 }

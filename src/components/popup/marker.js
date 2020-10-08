@@ -13,9 +13,9 @@ const Marker = ({ data }) => {
       />
       {toggleInfo && (
         <MarkerInfo>
-          <div>名稱：{data.name}</div>
-          <div>{data && data.opening_hours.isOpen()}</div>
-          <div>評分：{`${data.rating}(${data.user_ratings_total})`}</div>
+          <div>名稱：{data.name}</div>-
+          <div>{data && data.opening_hours.isOpen() ? '營業中' : '休息中'}</div>
+          -<div>評分：{`${data.rating}(${data.user_ratings_total})`}</div>
           <div>電話：{data.formatted_phone_number}</div>
           <div>
             營業時間：

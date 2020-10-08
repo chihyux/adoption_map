@@ -13,7 +13,6 @@ export const DetailImg = styled.div`
   width: 100%;
   background: #c5c5c5;
   display: grid;
-  justify-content: center;
   align-content: center;
   @media (min-width: 1024px) {
     width: 40%;

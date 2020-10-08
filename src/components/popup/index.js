@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
 import GoogleMapReact from 'google-map-react'
-import { apiKey } from '../../api/mapkeys'
+import { apiKey } from '../../api/mapKeys'
 import { MapWrapper } from './style/popUpBox'
 import Marker from './marker'
 
-const PopUpBox = ({ mapHandler, place }) => {
+const PopUpBox = ({ place }) => {
   const [position, setPosition] = useState({
     lat: 25.0,
     lng: 121.46,
   })
   const [marker, setMarker] = useState(null)
 
-  let request = {
-    input: place,
-    fields: ['name', 'geometry'],
-  }
-
-  const autoSearch = (map, maps) => {
-    const service = new maps.places.AutocompleteService(map)
-    service.getPlacePredictions(request, (results, status) => {
+  const autoSearch = (query, map, maps) => {
+    let request = {
+      query,
+      fields: ['name', 'geometry', 'formatted_address', 'place_id'],
+    }
+    const service = new maps.places.PlacesService(map)
+    service.findPlaceFromQuery(request, (results, status) => {
       if (status === maps.places.PlacesServiceStatus.OK) {
         const id = results[0].place_id
         return getDetail(id, map, maps)
@@ -34,16 +33,17 @@ const PopUpBox = ({ mapHandler, place }) => {
         'place_id',
         'rating',
         'user_ratings_total',
+        'business_status',
         'formatted_address',
         'formatted_phone_number',
         'geometry',
         'opening_hours',
+        'address_component',
       ],
     }
     const service = new maps.places.PlacesService(map)
     service.getDetails(place, (place, status) => {
       if (status === maps.places.PlacesServiceStatus.OK) {
-        console.log(place)
         setMarker(place)
         setPosition({
           lat: place.geometry.location.lat(),
@@ -71,7 +71,7 @@ const PopUpBox = ({ mapHandler, place }) => {
         zoom={17}
         yesIWantToUseGoogleMapApiInternals
         onGoogleApiLoaded={({ map, maps }) => {
-          autoSearch(map, maps)
+          autoSearch(place, map, maps)
         }}
       >
         {marker && (

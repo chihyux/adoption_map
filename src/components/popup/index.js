@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import GoogleMapReact from 'google-map-react'
-import { apiKey } from '../../api/mapKeys'
+// import { key } from '../../api/mapKeys'
 import { MapWrapper } from './style/popUpBox'
 import Marker from './marker'
 
@@ -53,10 +53,7 @@ const PopUpBox = ({ place }) => {
     })
   }
 
-  const key =
-    process.env.NODE_ENV === 'production'
-      ? process.env.REACT_APP_GOOGLE_KEY
-      : apiKey
+  const key = process.env.REACT_APP_GOOGLE_KEY
 
   return (
     <MapWrapper>

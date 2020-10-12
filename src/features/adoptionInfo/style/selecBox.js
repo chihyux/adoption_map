@@ -10,6 +10,7 @@ export const RadioInput = styled.div`
     position: relative;
     padding-left: 2rem;
     line-height: 1.8;
+    display: inline-block;
     ${media.sm`
       font-size: 1.5rem;
     `}
@@ -22,7 +23,8 @@ export const RadioInput = styled.div`
     display: inline-block;
     position: absolute;
     left: 0;
-    top: 0;
+    top: 50%;
+    transform: translateY(-50%);
   }
   .radio-button::after {
     content: '';
